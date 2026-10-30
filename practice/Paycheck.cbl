@@ -3,7 +3,7 @@ PROGRAM-ID. Paycheck.
 
 DATA DIVISION.
        WORKING-STORAGE SECTION.
-       01 HOURS-Worked pic 9(2)V99 value zero.
+       01 HOURS-Worked pic 9(2)V99 value 99.
        01 Hourly-rate pic 9(2)V99 value 99.99.
        01 Gross-pay pic 9(5)V99 comp-3 value zero.
        01 display-pay pic $$$,$$9.99.
@@ -16,7 +16,7 @@ PROCEDURE DIVISION.
        move 99 to hours-worked.
        compute Gross-pay = hours-worked * hourly-rate
            on size error 
-               move 'Y' to error-flag                                   Setting to create error message for on size
+               move 'Y' to error-flag                                   *>Setting to create error message for on size
                display 'size error'
            not on size error 
                display 'fix ok'
