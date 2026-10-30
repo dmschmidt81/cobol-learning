@@ -11,6 +11,9 @@ DATA DIVISION.
            05 TEST-SCORE3 pic S9(3) VALUE 999.
            05 TEST-SCORE4 pic S9(3) VALUE 999.
            05 TEST-SCORE5 pic S9(3) VALUE 999.
+           
+           05 TOTAL-SCORE pic S9(4).
+           05 AVERAGE-SCORE pic S9(3)V99.
 
 PROCEDURE DIVISION.
        PERFORM UNTIL TEST-SCORE1 >=0 AND TEST-SCORE1 <= 100
@@ -48,8 +51,25 @@ PROCEDURE DIVISION.
                DISPLAY "Invalid score. Please enter a score between 0 and 100."
            END-IF
        END-PERFORM.
-       DISPLAY "The test scores are: " TEST-SCORE1 ", " TEST-SCORE2 ", " TEST-SCORE3 ", " TEST-SCORE4 ", " TEST-SCORE5.
+       
+       ADD TEST-SCORE1 TEST-SCORE2 TEST-SCORE3 TEST-SCORE4 TEST-SCORE5 GIVING TOTAL-SCORE.
 
+       COMPUTE AVERAGE-SCORE = TOTAL-SCORE / 5.
+       
+       DISPLAY "The test scores are: " TEST-SCORE1 ", " TEST-SCORE2 ", " TEST-SCORE3 ", " TEST-SCORE4 ", " TEST-SCORE5.
+       DISPLAY "The total score is: " TOTAL-SCORE.
+       DISPLAY "The average score is: " AVERAGE-SCORE.
+       IF AVERAGE-SCORE >= 90
+           DISPLAY "Score is A."
+       ELSE IF AVERAGE-SCORE >= 80
+           DISPLAY "Score is B."
+       ELSE IF AVERAGE-SCORE >= 70
+           DISPLAY "Score is C."
+       ELSE IF AVERAGE-SCORE >= 60
+           DISPLAY "Score is D."
+       ELSE
+           DISPLAY "Score is F."
+       END-IF.
 
 
        STOP RUN.
